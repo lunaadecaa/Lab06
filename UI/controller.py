@@ -28,4 +28,43 @@ class Controller:
         self._view.update()
 
     # Altre Funzioni Event Handler
-    # TODO
+
+
+def mostra_strumenti(self, e):
+    """Gestisce il click sul pulsante Mostra"""
+    self._view.lista_strumenti.controls.clear()
+
+    # Recupera gli strumenti dal modello (che interroga il DB)
+    strumenti = self._model.get_tutti_strumenti()
+
+    if not strumenti:
+        self._view.show_alert("Nessuno strumento trovato nel database.")
+        return
+
+    for s in strumenti:
+        self._view.lista_strumenti.controls.append(ft.Text(str(s)))
+
+    self._view.update()
+
+
+def cerca_tipo(self, e):
+    """Gestisce il click sul pulsante Cerca per tipo"""
+    tipo = self._view.input_tipo_strumento.value
+
+    if not tipo:
+        self._view.show_alert("Inserisci un tipo di strumento valido da cercare.")
+        return
+
+    self._view.lista_strumenti_ricerca.controls.clear()
+
+    # Interroga il modello passando il tipo inserito
+    strumenti = self._model.cerca_strumenti_per_tipo(tipo)
+
+    if not strumenti:
+        self._view.show_alert(f"Nessuno strumento trovato per il tipo: {tipo}")
+        return
+
+    for s in strumenti:
+        self._view.lista_strumenti_ricerca.controls.append(ft.Text(str(s)))
+
+    self._view.update()

@@ -74,7 +74,7 @@ INSERT INTO `prestito` (`codice`, `data`, `id_strumento`, `allievo`) VALUES
     ('P005', '2025-09-04', 'S006', 'Francesca Neri'),
     ('P006', '2025-10-22', 'S022', 'Maria Costa');
 /*!40000 ALTER TABLE `prestito` ENABLE KEYS */;
-
+a
 -- Aggiorna la disponibilità degli strumenti in prestito
 UPDATE strumento
 SET disponibile = false
